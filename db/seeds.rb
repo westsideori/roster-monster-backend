@@ -27,4 +27,6 @@ players.each do |player|
     )
 end
 
+User.create(name: "Ori", username: "Ori1", password: "123")
+
 puts "Done!"

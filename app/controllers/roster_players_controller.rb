@@ -7,6 +7,7 @@ class RosterPlayersController < ApplicationController
 
     def create
         roster_player = RosterPlayer.create(params.permit(:roster_id, :player_id))
+        
         render json: roster_player
     end
 

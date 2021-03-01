@@ -19,7 +19,8 @@ class UsersController < ApplicationController
     end
 
     def create
-        #Fake Auth first
+        user = User.create(params.permit(:name, :username, :password))
+        render json: user
     end
 
     def update
