@@ -1,4 +1,5 @@
 class ScoreSettingsController < ApplicationController
+    
 
     def index
         score_settings = ScoreSetting.all

@@ -1,4 +1,5 @@
 class RosterPlayersController < ApplicationController
+    
 
     def index
         roster_players = RosterPlayer.all
@@ -11,7 +12,7 @@ class RosterPlayersController < ApplicationController
         render json: roster_player
     end
 
-    def delete
+    def destroy
         roster_player = RosterPlayer.find(params[:id])
         roster_player.destroy
     end

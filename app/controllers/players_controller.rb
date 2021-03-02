@@ -1,4 +1,5 @@
 class PlayersController < ApplicationController
+    # skip_before_action :authenticate
 
     def player_season_data
         db_players = Player.all.to_json

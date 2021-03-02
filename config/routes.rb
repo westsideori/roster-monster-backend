@@ -1,14 +1,16 @@
 Rails.application.routes.draw do
-  resources :score_settings
-  resources :watchlist_players
-  resources :watchlists
-  # resources :players
-  resources :roster_players
-  # resources :rosters
-  resources :users
+  # resources :score_settings
+  # resources :watchlist_players
+  # resources :watchlists
+  # # resources :players
+  # resources :roster_players
+  # # resources :rosters
+  # resources :users
 
   post "/login", to: "users#login"
-  get "/me", to: "users#me"
+  post "/signup", to: "users#signup"
+  get "/me", to: "users#show"
+  get '/users/:id/rosters', to: "users#rosters"
 
   get "/players", to: "players#player_season_data"
   get "/predictions", to: "players#player_daily_predictions"
@@ -16,6 +18,9 @@ Rails.application.routes.draw do
   post '/rosters', to: "rosters#create"
   post '/roster_players', to: "roster_players#create"
   post '/score_settings', to: "score_settings#create"
+
+  get '/rosters/:id', to: "rosters#show"
+  delete '/roster_players/:id', to: "roster_players#destroy"
 
 
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html

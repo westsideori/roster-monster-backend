@@ -1,4 +1,5 @@
 class WatchlistPlayersController < ApplicationController
+    
 
     def index
         watchlist_players = WatchlistPlayer.all
