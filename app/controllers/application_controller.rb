@@ -15,9 +15,9 @@ class ApplicationController < ActionController::API
         @current_user = User.find_by(id: payload["user_id"])
         # @current_user
 
-    #   rescue
-    #     # if anything goes wrong, send an unauthorized status back
-    #     render json: { errors: ["Not authorized"] }, status: :unauthorized
+      rescue
+        # if anything goes wrong, send an unauthorized status back
+        render json: { errors: ["Not authorized"] }, status: :unauthorized
         
 
     end

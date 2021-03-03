@@ -1,5 +1,5 @@
 class ScoreSettingsController < ApplicationController
-    
+    before_action :authenticate, only: [:create]
 
     def index
         score_settings = ScoreSetting.all

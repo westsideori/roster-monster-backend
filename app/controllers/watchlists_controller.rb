@@ -1,5 +1,5 @@
 class WatchlistsController < ApplicationController
-    
+    before_action :authenticate, only: [:show, :destroy]
 
     def index
         watchlists = Watchlist.all
@@ -7,7 +7,7 @@ class WatchlistsController < ApplicationController
     end
 
     def show
-        watchlist = Watchlist.find(params[:id])
+        watchlist = Watchlist.find_by(user_id: params[:id])
         render json: watchlist
     end
 

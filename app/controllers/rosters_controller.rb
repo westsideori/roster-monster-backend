@@ -1,5 +1,5 @@
 class RostersController < ApplicationController
-    
+    before_action :authenticate, only: [:show, :create, :update, :destroy]
 
     def index
         rosters = Roster.all
@@ -7,22 +7,29 @@ class RostersController < ApplicationController
     end
 
     def show
-        roster = Roster.find(params[:id])
+        roster = Roster.find_by(id: params[:rostid], user_id: params[:id])
         render json: roster
     end
 
     def create
         roster = Roster.create(roster_params)
-        render json: roster
+        if roster.valid?
+            render json: roster
+        else
+            render json: { errors: roster.errors.full_messages }, status: :unprocessable_entity
+        end
     end
 
     def update
         roster = Roster.find(params[:id])
-        roster.update(params.permit(:name, :league, :season, :slogan))
-        render json: roster
+        if roster.update(params.permit(:name, :league, :season, :slogan))
+            render json: roster
+        else
+            render json: { errors: roster.errors.full_messages }, status: :unprocessable_entity
+        end
     end
 
-    def delete
+    def destroy
         roster = Roster.find(params[:id])
         roster.destroy
     end

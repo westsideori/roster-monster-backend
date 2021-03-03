@@ -1,6 +1,6 @@
 class User < ApplicationRecord
-    has_many :rosters
-    has_one :watchlist
+    has_many :rosters, dependent: :destroy
+    has_one :watchlist, dependent: :destroy
 
     has_secure_password
 
