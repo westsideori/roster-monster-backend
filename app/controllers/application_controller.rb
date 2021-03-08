@@ -9,7 +9,7 @@ class ApplicationController < ActionController::API
         # get the token out of the header
         token = auth_header.split.last
         # decode the token using JWT
-        payload = JWT.decode(token, 'mysecret', true, { algorithm: 'HS256' })[0]
+        payload = JWT.decode(token, ENV["JWT_SECRET"], true, { algorithm: 'HS256' })[0]
         
         # get the current user from the decoded payload
         @current_user = User.find_by(id: payload["user_id"])

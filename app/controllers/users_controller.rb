@@ -12,7 +12,7 @@ class UsersController < ApplicationController
         user = User.find_by(username: params[:username])
         if user && user.authenticate(params[:password])
             # if they gave the right info, return that user object
-            token = JWT.encode({ user_id: user.id }, 'mysecret', 'HS256')
+            token = JWT.encode({ user_id: user.id }, ENV["JWT_SECRET"], 'HS256')
             render json: { user: UserSerializer.new(user), token: token }
         else
             # otherwise, return some error message
@@ -37,7 +37,7 @@ class UsersController < ApplicationController
         user = User.create(user_params)
         if user.valid?
           # if the user is created successfully, send back the user
-          token = JWT.encode({ user_id: user.id }, 'mysecret', 'HS256')
+          token = JWT.encode({ user_id: user.id }, ENV["JWT_SECRET"], 'HS256')
           watchlist = Watchlist.create(user_id: user.id)
           render json: { user: UserSerializer.new(user), token: token }
         else
