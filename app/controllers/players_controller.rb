@@ -22,7 +22,7 @@ class PlayersController < ApplicationController
     def player_daily_predictions
         db_players = Player.all.to_json
         # response = RestClient.get "https://api.sportsdata.io/v3/nba/projections/json/PlayerGameProjectionStatsByDate/#{Time.now.strftime("%Y-%b-%d")}?key=#{ENV["FANTASY_API_KEY"]}"
-        response = RestClient.get "https://api.sportsdata.io/v3/nba/projections/json/PlayerGameProjectionStatsByDate/2021-feb-23?key=#{ENV["FANTASY_API_KEY"]}"
+        response = RestClient.get "https://api.sportsdata.io/v3/nba/projections/json/PlayerGameProjectionStatsByDate/2021-mar-17?key=#{ENV["FANTASY_API_KEY"]}"
         api_players = JSON.parse(response.body)
         db_players_parsed = JSON.parse(db_players)
         players = []
